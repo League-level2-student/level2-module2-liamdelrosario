@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /*
@@ -20,24 +21,59 @@ public class LeagueOptionPane {
 	public static void showMessageDialog(String message) {
 		// 1. Open example.png and make a GUI that looks like that
 		//    The message parameter is what we want to show on our pop-up
-		
-		
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
+		frame.add(label);
+		label.setText(message);
+		label.setIcon(loadImage("java.png"));
+		frame.pack();
+		frame.setVisible(true);
 		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
-		//frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 	
 	// 3. Call this method in the Runner class
 	
 
 	// 4. Create another showMessageDialog() method that lets us also choose the Message and Title 
 	//    2 String parameters (one for the message and one for the title)
-	
+	public static void showMessageDialog(String message, String title) {
+		// 1. Open example.png and make a GUI that looks like that
+		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
+		frame.add(label);
+		label.setText(message);
+		frame.setTitle(title);
+		label.setIcon(loadImage("java.png"));
+		frame.pack();
+		frame.setVisible(true);
+		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 	// 5. Call this method in the Runner class
 	
 	
 	// 6. Create another showMessageDialog() method that lets us choose the Message, Title, and Image
 	//    3 String parameters (one for the message, one for the title, and one for the fileName)
-	
+	public static void showMessageDialog(String message, String title, String fileName) {
+		// 1. Open example.png and make a GUI that looks like that
+		//    The message parameter is what we want to show on our pop-up
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
+		frame.add(label);
+		label.setText(message);
+		frame.setTitle(title);
+		label.setIcon(loadImage(fileName));
+		frame.pack();
+		frame.setVisible(true);
+		// 2. Uncomment the line of code below. It sets the location of our frame to the center of the screen
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 	// 7. Call this method in the Runner class
 	
 	// CHALLENGE: 

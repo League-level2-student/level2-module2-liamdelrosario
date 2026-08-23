@@ -53,7 +53,7 @@ public class LeagueSnake extends PApplet {
 
     @Override
     public void draw() {
-    	
+    	checkBoundaries();
         background(0,0,0);
         drawFood();
         move();
@@ -136,15 +136,20 @@ public class LeagueSnake extends PApplet {
         if (direction == UP) {
             // Move head up
         	snakeHead.y-=10;
-            
+            System.out.println(snakeHead.x+" "+snakeHead.y);
+
         } else if (direction == DOWN) {
             // Move head down
             snakeHead.y+=10;    
+            System.out.println(snakeHead.x+" "+snakeHead.y);
+
         } else if (direction == LEFT) {        
         	snakeHead.x-=10;
-            
+            System.out.println(snakeHead.x+" "+snakeHead.y);
+
         } else if (direction == RIGHT) {
             snakeHead.x+=10;
+            System.out.println(snakeHead.x+" "+snakeHead.y);
 
         }
         
@@ -153,20 +158,25 @@ public class LeagueSnake extends PApplet {
     void checkBoundaries() {
         // If the snake leaves the frame, make it reappear on the other side
         if (snakeHead.y<0) {
-        	
-        }else if(snakeHead.y>600) {
-        	
+        	snakeHead.y= 500;
+        }else if(snakeHead.y>500) {
+        	snakeHead.y= 0;
+
         } else if(snakeHead.x<0) {
-        	
-        }else if(snakeHead.x>600) {
-        	
+        	snakeHead.x= 500;
+
+        }else if(snakeHead.x>500) {
+        	snakeHead.x= 0;
+
         }
     }
 
     void eat() {
         // When the snake eats the food, its tail should grow and more
         // food appear
-        if(snakeHead.x==&&)
+        if(snakeHead.x == foodX && snakeHead.y== foodY) {
+        	
+        }
     }
 
     static public void main(String[] passedArgs) {

@@ -1,6 +1,7 @@
 package _08_LeagueSnake;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 
@@ -20,7 +21,8 @@ public class LeagueSnake extends PApplet {
     int foodY;
     int direction = UP;
     int snakeBites;
-    
+    int snakeLength = 1;
+    ArrayList <Integer> tailNumbers = new ArrayList<Integer>();
     /*
      * Setup methods
      * 
@@ -33,7 +35,7 @@ public class LeagueSnake extends PApplet {
 
     @Override
     public void setup() {
-
+    
     	snakeHead= new Segment(250,250);
         frameRate(20);
         dropFood();
@@ -58,6 +60,7 @@ public class LeagueSnake extends PApplet {
         drawFood();
         move();
         drawSnake();
+        eat();
     }
 
     void drawFood() {
@@ -76,7 +79,11 @@ public class LeagueSnake extends PApplet {
 
     void drawTail() {
         // Draw each segment of the tail
-        
+    	for(int i=0; i<3; i++) {
+    		snakeLength+=1;
+    		tailNumbers.add(i);
+    		
+    	}
     }
 
     /*
@@ -109,21 +116,26 @@ public class LeagueSnake extends PApplet {
         // Set the direction of the snake according to the arrow keys pressed
        System.out.println(keyCode);
        
-       if(keyCode ==UP && direction!= DOWN) {
-    	   direction = UP;
-       }
-       direction= keyCode;
+ 
        if(direction ==UP) {
+    	   if(keyCode!=DOWN) {
     	   direction = keyCode;
+    	   }
        }
        else if(direction ==DOWN) {
-    	   direction = keyCode;
+    	   if(keyCode!=UP) {
+        	   direction = keyCode;
+        	   }
        }
        else if(direction ==LEFT) {
-    	   direction = keyCode;
+    	   if(keyCode!=RIGHT) {
+        	   direction = keyCode;
+        	   }
        }
        else if(direction ==RIGHT) {
-    	   direction = keyCode;
+    	   if(keyCode!=LEFT) {
+        	   direction = keyCode;
+        	   }
        }
     }
 
@@ -175,7 +187,10 @@ public class LeagueSnake extends PApplet {
         // When the snake eats the food, its tail should grow and more
         // food appear
         if(snakeHead.x == foodX && snakeHead.y== foodY) {
+        	drawTail();
+        	dropFood();
         	
+        	System.out.println("Nom Nom Nom");
         }
     }
 

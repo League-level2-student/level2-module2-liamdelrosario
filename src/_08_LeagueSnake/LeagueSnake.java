@@ -22,7 +22,7 @@ public class LeagueSnake extends PApplet {
     int direction = UP;
     int snakeBites;
     int snakeLength = 1;
-    ArrayList <Integer> tailNumbers = new ArrayList<Integer>();
+    ArrayList <String> tailNumbers = new ArrayList<String>();
     /*
      * Setup methods
      * 
@@ -37,7 +37,7 @@ public class LeagueSnake extends PApplet {
     public void setup() {
     
     	snakeHead= new Segment(250,250);
-        frameRate(20);
+        frameRate(10);
         dropFood();
     }
 
@@ -79,11 +79,15 @@ public class LeagueSnake extends PApplet {
 
     void drawTail() {
         // Draw each segment of the tail
-    	for(int i=0; i<3; i++) {
     		snakeLength+=1;
-    		tailNumbers.add(i);
-    		
-    	}
+    		String snakeNumber =String.valueOf(snakeLength);
+    		tailNumbers.add("xy"+snakeNumber);
+    		for(int i =0; i<tailNumbers.size(); i++) {
+    			String s = tailNumbers.get(i);
+    			System.out.println(s);
+    		}
+    		System.out.println(tailNumbers);
+    	
     }
 
     /*
@@ -187,10 +191,10 @@ public class LeagueSnake extends PApplet {
         // When the snake eats the food, its tail should grow and more
         // food appear
         if(snakeHead.x == foodX && snakeHead.y== foodY) {
-        	drawTail();
         	dropFood();
-        	
+        	drawTail();
         	System.out.println("Nom Nom Nom");
+        	System.out.println(snakeLength);
         }
     }
 

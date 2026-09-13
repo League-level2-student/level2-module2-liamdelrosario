@@ -21,8 +21,9 @@ public class LeagueSnake extends PApplet {
     int foodY;
     int direction = UP;
     int snakeBites;
-    int snakeLength = 1;
-    ArrayList <String> tailNumbers = new ArrayList<String>();
+    int snakeLength = 5;
+    ArrayList <Segment> tailNumbers = new ArrayList<Segment>();
+    
     /*
      * Setup methods
      * 
@@ -61,6 +62,8 @@ public class LeagueSnake extends PApplet {
         move();
         drawSnake();
         eat();
+        drawTail();
+        manageTail();
     }
 
     void drawFood() {
@@ -79,14 +82,11 @@ public class LeagueSnake extends PApplet {
 
     void drawTail() {
         // Draw each segment of the tail
-    		snakeLength+=1;
-    		String snakeNumber =String.valueOf(snakeLength);
-    		tailNumbers.add("xy"+snakeNumber);
-    		for(int i =0; i<tailNumbers.size(); i++) {
-    			String s = tailNumbers.get(i);
-    			System.out.println(s);
+    		
+    		
+			for(Segment s: tailNumbers) {
+    			rect(s.x,s.y,10,10);
     		}
-    		System.out.println(tailNumbers);
     	
     }
 
@@ -100,7 +100,11 @@ public class LeagueSnake extends PApplet {
         // After drawing the tail, add a new segment at the "start" of the tail and
         // remove the one at the "end"
         // This produces the illusion of the snake tail moving.
-
+    	tailNumbers.add(new Segment(snakeHead.x, snakeHead.y));
+    
+    	if (tailNumbers.size() > snakeLength) {
+    		tailNumbers.remove(0);
+    	}
     }
 
     void checkTailCollision() {
@@ -195,6 +199,7 @@ public class LeagueSnake extends PApplet {
         	drawTail();
         	System.out.println("Nom Nom Nom");
         	System.out.println(snakeLength);
+        	tailNumbers.add(new Segment(snakeHead.x, snakeHead.y));
         }
     }
 

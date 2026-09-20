@@ -64,6 +64,7 @@ public class LeagueSnake extends PApplet {
         eat();
         drawTail();
         manageTail();
+        checkTailCollision();
     }
 
     void drawFood() {
@@ -109,6 +110,12 @@ public class LeagueSnake extends PApplet {
 
     void checkTailCollision() {
         // If the snake crosses its own tail, shrink the tail back to one segment
+    	for(int i=0;i<tailNumbers.size()-1;i++) {
+    		Segment s = tailNumbers.get(i);
+    		if(snakeHead.x==s.x&&snakeHead.y==s.y) {
+    		System.out.println("which member");
+    		}
+    	}
         
     }
 
@@ -123,8 +130,10 @@ public class LeagueSnake extends PApplet {
     public void keyPressed() {
         // Set the direction of the snake according to the arrow keys pressed
        System.out.println(keyCode);
+       if(keyCode < LEFT || keyCode > DOWN) {
+    	   	return;
+       }
        
- 
        if(direction ==UP) {
     	   if(keyCode!=DOWN) {
     	   direction = keyCode;
@@ -199,7 +208,7 @@ public class LeagueSnake extends PApplet {
         	drawTail();
         	System.out.println("Nom Nom Nom");
         	System.out.println(snakeLength);
-        	tailNumbers.add(new Segment(snakeHead.x, snakeHead.y));
+        	tailNumbers.add(new Segment(tailNumbers.get(0).x, tailNumbers.get(0).y));
         }
     }
 

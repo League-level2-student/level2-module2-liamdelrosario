@@ -23,7 +23,6 @@ public class LeagueSnake extends PApplet {
     int snakeBites;
     int snakeLength = 5;
     ArrayList <Segment> tailNumbers = new ArrayList<Segment>();
-    
     /*
      * Setup methods
      * 
@@ -47,7 +46,6 @@ public class LeagueSnake extends PApplet {
     	foodX = ((int)random(50)*10);
     	foodY = ((int)random(50)*10);
     }
-
     /*
      * Draw Methods
      * 
@@ -58,7 +56,9 @@ public class LeagueSnake extends PApplet {
     public void draw() {
     	checkBoundaries();
         background(0,0,0);
+        for(int i=0; i<=10;i++) {
         drawFood();
+        }
         move();
         drawSnake();
         eat();
@@ -103,7 +103,7 @@ public class LeagueSnake extends PApplet {
         // This produces the illusion of the snake tail moving.
     	tailNumbers.add(new Segment(snakeHead.x, snakeHead.y));
     
-    	if (tailNumbers.size() > snakeLength) {
+    	while (tailNumbers.size() > snakeLength) {
     		tailNumbers.remove(0);
     	}
     }
@@ -113,7 +113,9 @@ public class LeagueSnake extends PApplet {
     	for(int i=0;i<tailNumbers.size()-1;i++) {
     		Segment s = tailNumbers.get(i);
     		if(snakeHead.x==s.x&&snakeHead.y==s.y) {
-    		System.out.println("which member");
+    		System.out.println("");
+    		tailNumbers.clear();
+    		
     		}
     	}
         
@@ -208,7 +210,8 @@ public class LeagueSnake extends PApplet {
         	drawTail();
         	System.out.println("Nom Nom Nom");
         	System.out.println(snakeLength);
-        	tailNumbers.add(new Segment(tailNumbers.get(0).x, tailNumbers.get(0).y));
+        	snakeLength++;
+        	// tailNumbers.add(new Segment(tailNumbers.get(0).x, tailNumbers.get(0).y));
         }
     }
 
